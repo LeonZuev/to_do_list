@@ -18,7 +18,14 @@ and use the provided command numbers
 to interact with the application.
 
 ##Authors
+
 ![current date](https://img.shields.io/badge/date-2023.03.30-green)
+
 Alex Nesterov ([@NesterovAlexsey]:(https://github.com/NesterovAlexsey))
+TodoList, timeComparator, timeComparatorTests. idComparator, idComparatorTests
+
 Ion Cicala ([@Izzy7375]:(https://github.com/Izzy7375))
+RegularTask
+
 Leon Zuev ([@LeonZuev]:(https://github.com/LeonZuev))
+Main, CommandComparator, CommandComparatorTest
