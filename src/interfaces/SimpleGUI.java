@@ -1,3 +1,4 @@
+/*
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,11 +13,29 @@ public class SimpleGUI extends JFrame {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     // Создание компонентов интерфейса
-    JButton button = new JButton("Click me!");
-    JTextField textField = new JTextField(20);
+    JButton button1 = new JButton("HELP");
+    JTextField textField1 = new JTextField(20);
+
+    JButton button2 = new JButton("New task");
+    JTextField textField2 = new JTextField(20);
+
+    JButton button3 = new JButton("Check task");
+    JTextField textField3 = new JTextField(20);
+
+    JButton button4 = new JButton("Check task");
+    JTextField textField4 = new JTextField(20);
+
+    JButton button5 = new JButton("Sort task");
+    JTextField textField5 = new JTextField(20);
+
+    JButton button6 = new JButton("Export task");
+    JTextField textField65 = new JTextField(20);
+
+    JButton button7 = new JButton("EXIT");
+    JTextField textField7 = new JTextField(20);
 
     // Добавление слушателя событий для кнопки
-    button.addActionListener(new ActionListener() {
+    button1.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         textField.setText("Hello, World!");
@@ -43,4 +62,4 @@ public class SimpleGUI extends JFrame {
       }
     });
   }
-}
+}*/
