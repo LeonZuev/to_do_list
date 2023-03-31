@@ -17,7 +17,7 @@ Follow the on-screen prompts
 and use the provided command numbers
 to interact with the application.
 
-##Authors
+## Authors
 
 ![current date](https://img.shields.io/badge/date-2023.03.30-green)
 
