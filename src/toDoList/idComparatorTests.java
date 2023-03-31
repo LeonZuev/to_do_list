@@ -10,7 +10,7 @@ public class idComparatorTests {
 
   private final Comparator<Map.Entry<Integer, RegularTask>> comparator = new idComparator();
 
-  //проверка на 0 бессмыслена, т.к. энтри сет, как сет, не содержит одинаковых значений
+  //Проверка на 0 бессмысленна, т.к. entry set, как сет, не содержит одинаковых значений
   @Test
   public void checkTheIdComparator() {
     Map<Integer, RegularTask> testMap = new HashMap<>();
