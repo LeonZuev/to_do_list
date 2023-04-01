@@ -1,6 +1,5 @@
 package interfaces;
 
-
 import toDoList.RegularTask;
 import toDoList.ToDoList;
 
@@ -12,14 +11,12 @@ import java.io.IOException;
 
 public class MainInterface {
   private static final ToDoList todoList = new ToDoList();
-  private static final ListInterface listInterface = new ListInterface(todoList);
-
   public static void main(String[] args) {
     SwingUtilities.invokeLater(MainInterface::run);
   }
-
   private static void run() {
     JFrame frame = new JFrame("TODO List");
+
     ListInterface listInterface = new ListInterface(todoList, frame);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(500, 309);
@@ -29,14 +26,12 @@ public class MainInterface {
     JButton button1 = new JButton("HELP");
     panel.add(button1);
 
-    // Add ActionListener to HELP button
-    button1.addActionListener(new ActionListener() {
+    button1.addActionListener(new ActionListener() {// Add ActionListener to HELP button
       @Override
       public void actionPerformed(ActionEvent e) {
         JOptionPane.showMessageDialog(frame, "This is the help message!");
       }
     });
-
 
     JButton button2 = new JButton("New task");
     panel.add(button2);
@@ -89,30 +84,7 @@ public class MainInterface {
     button4.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-       /* JTextField taskIdField = new JTextField();
-        Object[] fields = {"Task ID: ", taskIdField};
-        int option = JOptionPane.showConfirmDialog(frame, fields, "Correct Task",
-        JOptionPane.OK_CANCEL_OPTION);
-        if (option == JOptionPane.OK_OPTION) {
-          try {
-            int taskId = Integer.parseInt(taskIdField.getText());
-            todoList.correctTask(taskId);
-          } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(frame, "Invalid input. Please enter a numeric value" +
-            "for the task ID.");
-          } catch (IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(frame, ex.getMessage());
-          } catch (Exception ex) {
-            JOptionPane.showMessageDialog(frame, "An error occurred: " + ex.getMessage());
-          }
-        }
-      }
-    });*/
-        try {
-          listInterface.correctTask();
-        } catch (IOException ioException) {
-          ioException.printStackTrace();
-        }
+        listInterface.correctTask();
       }
     });
 

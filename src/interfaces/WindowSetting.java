@@ -30,3 +30,4 @@ public class WindowSetting {
             screenBounds.y + screenBounds.height / 2 - frame.getHeight() / 2);
   }
 }
+
