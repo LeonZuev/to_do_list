@@ -21,6 +21,15 @@ public class MainInterface {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(500, 309);
 
+    //определение монитора с активным приложением
+    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    GraphicsDevice activeScreen = ge.getDefaultScreenDevice();
+    Rectangle screenBounds = activeScreen.getDefaultConfiguration().getBounds();
+
+    // установка позиции окна на активном мониторе
+     frame.setLocation(screenBounds.x + screenBounds.width / 2 - frame.getWidth() / 2,
+             screenBounds.y + screenBounds.height / 2 - frame.getHeight() / 2);
+
     JPanel panel = new JPanel();
     panel.setLayout(new GridLayout(7, 1));
 
