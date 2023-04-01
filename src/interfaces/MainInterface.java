@@ -66,9 +66,6 @@ public class MainInterface {
     frame.add(panel);
     frame.setVisible(true);
 
-
-
-
     JButton button2 = new JButton("New task");
     panel.add(button2);
 
@@ -85,13 +82,10 @@ public class MainInterface {
           try {
             int taskHours = Integer.parseInt(hours.getText());
             int taskMinutes = Integer.parseInt(minutes.getText());
-            ToDoList currentTodoList = new ToDoList();
-            Object ToDoList = null;
-            int taskId = currentTodoList.getNextTaskId();
+            int taskId = todoList.getNextTaskId();
             RegularTask newTask = new RegularTask(taskId, taskHours, taskMinutes,
                     title.getText());
-            ToDoList currentToDoList = new ToDoList();
-            currentToDoList.newTask(newTask);
+            todoList.newTask(newTask);
           } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input. Please enter numeric values for hours and minutes.");
           }
@@ -146,9 +140,7 @@ public class MainInterface {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
-          ToDoList currentToDoList;
-          currentToDoList = null;
-          currentToDoList.sortTasks();
+         ToDoList.sortTasks();
         } catch (IOException ioException) {
           ioException.printStackTrace();
         }

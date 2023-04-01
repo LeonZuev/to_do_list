@@ -58,21 +58,22 @@ public class Main {
     }
   }
 
-  private static int taskId = 0;
+  //private static int taskId = 0;
 
-  public static void getNextTaskId() {
-    ++taskId;
-  }
+  //public static void getNextTaskId() {
+    //++taskId;
+  //}
 
-  public static RegularTask createRegularTask() throws IOException {
+  public static RegularTask createRegularTask(ToDoList currentToDoList) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int hours = 0;
     int minutes = 0;
+    int taskId = currentToDoList.getNextTaskId();
     String taskTitle;
 
     System.out.print("Enter title: ");
     taskTitle = br.readLine();
-    getNextTaskId();
+    //getNextTaskId();
 
     boolean validHours = false;
     while (!validHours) {
@@ -118,14 +119,15 @@ public class Main {
     Command command = readCommand();
     while (command != Command.EXIT) {
       try {
+        int taskId = 1;
         switch (command) {
           case HELP -> pintSortedCommands();
           case NEW_LIST -> {
-            RegularTask testTask = createRegularTask();
+            RegularTask testTask = createRegularTask(currentToDoList);
             currentToDoList.newTask(testTask);
           }
           case CHECK_LIST -> currentToDoList.checkList();
-          case CORRECT_LIST -> currentToDoList.correctTask(taskId);
+          case CORRECT_LIST -> currentToDoList.correctTask(++taskId);
           case SORT_LIST -> currentToDoList.sortTasks();
           case EXPORT_LIST -> currentToDoList.exportTaskList();
         }

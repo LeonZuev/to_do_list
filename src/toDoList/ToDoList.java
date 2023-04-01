@@ -13,14 +13,14 @@ import java.util.*;
 
 public class ToDoList {
 
-  private int currentTaskId;
+  private int taskId = 0;
 
   public RegularTask[] getCurrentTasks() {
     return new RegularTask[0];
   }
 
   public int getNextTaskId() {
-    return 0;
+    return ++taskId;
   }
 
   public boolean isValidCorrection(String correction) {
@@ -49,9 +49,9 @@ public class ToDoList {
     corrections.add(Correction.FINISH);
   }
 
-  private final Map<Integer, RegularTask> current = new HashMap<>();
+  private static final Map<Integer, RegularTask> current = new HashMap<>();
 
-  private List<Map.Entry<Integer, RegularTask>> listToDo() {
+  private static List<Map.Entry<Integer, RegularTask>> listToDo() {
     List<Map.Entry<Integer, RegularTask>> listToDo = new ArrayList<>();
     listToDo.addAll(current.entrySet());
     return listToDo;
@@ -60,18 +60,18 @@ public class ToDoList {
   //Новая задача
   public void newTask(RegularTask task) {
     current.put(task.getTaskId(), task);
-    currentTaskId = task.getTaskId() + 1;
+    /*currentTaskId = task.getTaskId() + 1;*/
     checkList();
   }
 
   //Проверка списка
-  public void checkList() {
+  public static void checkList() {
     List<Map.Entry<Integer, RegularTask>> listOfTaskWithId = listToDo();
     listOfTaskWithId.sort(new idComparator());
     printToDoList(listOfTaskWithId);
   }
 
-  private void printToDoList(List<Map.Entry<Integer, RegularTask>> listOfTaskWithId) {
+  private static void printToDoList(List<Map.Entry<Integer, RegularTask>> listOfTaskWithId) {
     System.out.println();
     System.out.println("======= My ToDo List ======");
     for (Map.Entry<Integer, RegularTask> paar : listOfTaskWithId) {
@@ -204,7 +204,7 @@ public class ToDoList {
   }
 
   //Сортировка задач
-  public void sortTasks() throws IOException {
+  public static void sortTasks() throws IOException {
     BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
     List<Map.Entry<Integer, RegularTask>> listOfTaskWithTime = listToDo();
 
