@@ -125,7 +125,7 @@ public class Main {
             currentToDoList.newTask(testTask);
           }
           case CHECK_LIST -> currentToDoList.checkList();
-          case CORRECT_LIST -> currentToDoList.correctTask();
+          case CORRECT_LIST -> currentToDoList.correctTask(taskId);
           case SORT_LIST -> currentToDoList.sortTasks();
           case EXPORT_LIST -> currentToDoList.exportTaskList();
         }
