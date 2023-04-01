@@ -1,7 +1,11 @@
 package interfaces;
 
+
+
 import toDoList.RegularTask;
 import toDoList.ToDoList;
+import toDoList.Main;
+import toDoList.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +15,6 @@ import java.io.IOException;
 
 public class MainInterface {
   private static final ToDoList todoList = new ToDoList();
-  private static final ListInterface listInterface = new ListInterface(todoList);
-
 
   public static void main(String[] args) {
     SwingUtilities.invokeLater(MainInterface::run);
@@ -60,8 +62,7 @@ public class MainInterface {
         JOptionPane.showMessageDialog(frame, "This is the help message!");
       }
     });
-    frame.add(panel);
-    frame.setVisible(true);
+
 
     JButton button2 = new JButton("New task");
     panel.add(button2);
@@ -79,10 +80,13 @@ public class MainInterface {
           try {
             int taskHours = Integer.parseInt(hours.getText());
             int taskMinutes = Integer.parseInt(minutes.getText());
-            int taskId = todoList.getNextTaskId();
+            ToDoList currentTodoList = new ToDoList();
+            Object ToDoList = null;
+            int taskId = currentTodoList.getNextTaskId();
             RegularTask newTask = new RegularTask(taskId, taskHours, taskMinutes,
                     title.getText());
-            todoList.newTask(newTask);
+            ToDoList currentToDoList = new ToDoList();
+            currentToDoList.newTask(newTask);
           } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input. Please enter numeric values for hours and minutes.");
           }
@@ -110,9 +114,9 @@ public class MainInterface {
     panel.add(button4);
 
     button4.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-/*        JTextField taskIdField = new JTextField();
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        JTextField taskIdField = new JTextField();
         Object[] fields = {"Task ID: ", taskIdField};
         int option = JOptionPane.showConfirmDialog(frame, fields, "Correct Task", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
@@ -128,22 +132,18 @@ public class MainInterface {
           }
         }
       }
-    });*/
-                                  try {
-                                    listInterface.correctTask();
-                                  } catch (IOException ioException) {
-                                    ioException.printStackTrace();
-                                  }
-                                }
-                              });
-            JButton button5 = new JButton("Sort task");
+    });
+
+    JButton button5 = new JButton("Sort task");
     panel.add(button5);
 
     button5.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
-          ToDoList.sortTasks();
+          ToDoList currentToDoList;
+          currentToDoList = null;
+          currentToDoList.sortTasks();
         } catch (IOException ioException) {
           ioException.printStackTrace();
         }
