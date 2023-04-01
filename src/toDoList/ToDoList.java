@@ -67,7 +67,6 @@ public class ToDoList {
   //Новая задача
   public void newTask(RegularTask task) {
     current.put(task.getTaskId(), task);
-    /*currentTaskId = task.getTaskId() + 1;*/
     checkList();
   }
 

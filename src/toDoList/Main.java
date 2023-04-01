@@ -5,7 +5,10 @@ package toDoList;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -58,11 +61,6 @@ public class Main {
     }
   }
 
-  //private static int taskId = 0;
-
-  //public static void getNextTaskId() {
-    //++taskId;
-  //}
 
   public static RegularTask createRegularTask(ToDoList currentToDoList) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -73,7 +71,6 @@ public class Main {
 
     System.out.print("Enter title: ");
     taskTitle = br.readLine();
-    //getNextTaskId();
 
     boolean validHours = false;
     while (!validHours) {

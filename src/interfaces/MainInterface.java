@@ -1,11 +1,8 @@
 package interfaces;
 
 
-
 import toDoList.RegularTask;
 import toDoList.ToDoList;
-import toDoList.Main;
-import toDoList.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -80,13 +77,10 @@ public class MainInterface {
           try {
             int taskHours = Integer.parseInt(hours.getText());
             int taskMinutes = Integer.parseInt(minutes.getText());
-            ToDoList currentTodoList = new ToDoList();
-            Object ToDoList = null;
-            int taskId = currentTodoList.getNextTaskId();
+            int taskId = todoList.getNextTaskId();
             RegularTask newTask = new RegularTask(taskId, taskHours, taskMinutes,
                     title.getText());
-            ToDoList currentToDoList = new ToDoList();
-            currentToDoList.newTask(newTask);
+            todoList.newTask(newTask);
           } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input. Please enter numeric values for hours and minutes.");
           }
@@ -141,9 +135,7 @@ public class MainInterface {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
-          ToDoList currentToDoList;
-          currentToDoList = null;
-          currentToDoList.sortTasks();
+          ToDoList.sortTasks();
         } catch (IOException ioException) {
           ioException.printStackTrace();
         }
