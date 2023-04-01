@@ -3,27 +3,36 @@ package interfaces;
 import toDoList.RegularTask;
 import toDoList.ToDoList;
 
+
 import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 
+import static interfaces.WindowSetting.setWindowOnTargetMonitor;
+
 public class ListInterface {
   private ToDoList toDoList;
 
-  public ListInterface(ToDoList toDoList) {
+  public ListInterface(ToDoList toDoList, JFrame mainFrame) {
     this.toDoList = toDoList;
+    WindowSetting.setWindowOnTargetMonitor(mainFrame);
   }
 
+  public ListInterface(ToDoList todoList) {
+  }
 
   public void showMessageDialog(String message) {
-    JOptionPane.showMessageDialog(null, message);
+    JOptionPane.showMessageDialog(null,
+            message);
   }
 
   public int showConfirmDialog(String message, String title) {
-    return JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+    return JOptionPane.showConfirmDialog(null, message, title,
+            JOptionPane.YES_NO_OPTION);
   }
 
   public String showInputDialog(String message) {
@@ -85,8 +94,9 @@ public class ListInterface {
     try {
       int taskId = getIdFromUser();
 
-      String correction = (String) JOptionPane.showInputDialog(null, "What do you want to change?",
-              "Correct Task", JOptionPane.PLAIN_MESSAGE, null, toDoList.getValidCorrections(), "TITLE");
+      String correction = (String) JOptionPane.showInputDialog(null,
+              "What do you want to change?", "Correct Task", JOptionPane.PLAIN_MESSAGE,
+              null, toDoList.getValidCorrections(), "TITLE");
       if (correction != null && toDoList.isValidCorrection(correction)) {
         String newValue = showInputDialog("Enter the new value: ");
         toDoList.correctTask(taskId, correction, newValue);

@@ -12,6 +12,7 @@ import java.io.IOException;
 
 public class MainInterface {
   private static final ToDoList todoList = new ToDoList();
+  private static final ListInterface listInterface = new ListInterface(todoList);
 
   public static void main(String[] args) {
     SwingUtilities.invokeLater(MainInterface::run);
@@ -19,33 +20,9 @@ public class MainInterface {
 
   private static void run() {
     JFrame frame = new JFrame("TODO List");
+    ListInterface listInterface = new ListInterface(todoList, frame);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(500, 309);
-
-    //определение монитора с активным приложением
-    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-    GraphicsDevice[] screenDevices = ge.getScreenDevices();
-    PointerInfo pointerInfo = MouseInfo.getPointerInfo();
-    Point pointerLocation = pointerInfo.getLocation();
-    GraphicsDevice targetScreen = null;
-
-    for (GraphicsDevice screenDevice : screenDevices) {
-      Rectangle screenBounds = screenDevice.getDefaultConfiguration().getBounds();
-      if (screenBounds.contains(pointerLocation)) {
-        targetScreen = screenDevice;
-        break;
-      }
-    }
-    if (targetScreen == null) {
-      targetScreen = ge.getDefaultScreenDevice();
-    }
-
-    Rectangle screenBounds = targetScreen.getDefaultConfiguration().getBounds();
-
-    // установка позиции окна на активном мониторе
-    frame.setLocation(screenBounds.x + screenBounds.width / 2 - frame.getWidth() / 2,
-            screenBounds.y + screenBounds.height / 2 - frame.getHeight() / 2);
-
     JPanel panel = new JPanel();
     panel.setLayout(new GridLayout(7, 1));
 
@@ -82,7 +59,8 @@ public class MainInterface {
                     title.getText());
             todoList.newTask(newTask);
           } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(frame, "Invalid input. Please enter numeric values for hours and minutes.");
+            JOptionPane.showMessageDialog(frame, "Invalid input. Please enter numeric " +
+                    "values for hours and minutes.");
           }
         }
       }
@@ -100,7 +78,8 @@ public class MainInterface {
         for (RegularTask task : todoList.getCurrentTasks()) {
           textArea.append(task.toString() + "\n");
         }
-        JOptionPane.showMessageDialog(frame, scrollPane, "Current Tasks", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(frame, scrollPane, "Current Tasks",
+                JOptionPane.PLAIN_MESSAGE);
       }
     });
 
@@ -110,20 +89,29 @@ public class MainInterface {
     button4.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        JTextField taskIdField = new JTextField();
+       /* JTextField taskIdField = new JTextField();
         Object[] fields = {"Task ID: ", taskIdField};
-        int option = JOptionPane.showConfirmDialog(frame, fields, "Correct Task", JOptionPane.OK_CANCEL_OPTION);
+        int option = JOptionPane.showConfirmDialog(frame, fields, "Correct Task",
+        JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
           try {
             int taskId = Integer.parseInt(taskIdField.getText());
             todoList.correctTask(taskId);
           } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(frame, "Invalid input. Please enter a numeric value for the task ID.");
+            JOptionPane.showMessageDialog(frame, "Invalid input. Please enter a numeric value" +
+            "for the task ID.");
           } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(frame, ex.getMessage());
           } catch (Exception ex) {
             JOptionPane.showMessageDialog(frame, "An error occurred: " + ex.getMessage());
           }
+        }
+      }
+    });*/
+        try {
+          listInterface.correctTask();
+        } catch (IOException ioException) {
+          ioException.printStackTrace();
         }
       }
     });
@@ -153,7 +141,8 @@ public class MainInterface {
           currentToDoList.exportTaskList();
           JOptionPane.showMessageDialog(frame, "Task list exported successfully!");
         } catch (IOException ex) {
-          JOptionPane.showMessageDialog(frame, "Error exporting task list: " + ex.getMessage());
+          JOptionPane.showMessageDialog(frame, "Error exporting task list: " +
+                  ex.getMessage());
         }
       }
     });
@@ -164,7 +153,8 @@ public class MainInterface {
     button7.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        int option = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION);
+        int option = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?",
+                "Exit Confirmation", JOptionPane.YES_NO_OPTION);
         if (option == JOptionPane.YES_OPTION) {
           System.exit(0);
         }
