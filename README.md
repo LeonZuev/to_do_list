@@ -1,7 +1,5 @@
 ## ToDo List Application
-This is a simple ToDo List implemented in Java.
-It allows users to manage their tasks by adding,
-checking, editing, sorting, and exporting them.
+This is a Java-based, user-friendly To-Do List application. It features a simple graphical interface with a set of buttons for various operations. The application provides multi-monitor support, ensuring that the interface window appears on the monitor where the mouse cursor is located. Regardless of the number of connected monitors.
 
 ## Features
 - Add a new task
