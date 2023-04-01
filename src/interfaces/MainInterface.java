@@ -11,6 +11,11 @@ import java.io.IOException;
 
 public class MainInterface {
   private static final ToDoList todoList = new ToDoList();
+  private static final ListInterface listInterface;
+
+  static {
+    listInterface = new ListInterface();
+  }
 
   public static void main(String[] args) {
     SwingUtilities.invokeLater(MainInterface::run);
@@ -58,6 +63,10 @@ public class MainInterface {
         JOptionPane.showMessageDialog(frame, "This is the help message!");
       }
     });
+    frame.add(panel);
+    frame.setVisible(true);
+
+
 
 
     JButton button2 = new JButton("New task");

@@ -23,6 +23,14 @@ public class ToDoList {
     return 0;
   }
 
+  public boolean isValidCorrection(String correction) {
+    return false;
+  }
+
+  public boolean containsTask(int id) {
+    return false;
+  }
+
   enum Correction {
     CHANGE_TITLE, //коррекция название
     CHANGE_HOURS, // коррекция часов
@@ -187,7 +195,7 @@ public class ToDoList {
     return result;
   }
 
-  private void printMenu() {
+  public void printMenu() {
     System.out.println();
     System.out.println("List of possible corrections: ");
     for (Correction correction : corrections) {
