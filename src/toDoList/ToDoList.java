@@ -13,6 +13,10 @@ import java.util.*;
 
 public class ToDoList {
 
+  public int getNextTaskId() {
+    return 0;
+  }
+
   enum Correction {
     CHANGE_TITLE, //коррекция название
     CHANGE_HOURS, // коррекция часов

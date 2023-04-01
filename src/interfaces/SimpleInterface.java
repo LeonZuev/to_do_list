@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SimpleInterface {
+  private static final ToDoList todoList = new ToDoList();
   public static void main(String[] args) {
     SwingUtilities.invokeLater(SimpleInterface::run);
   }
@@ -24,7 +25,6 @@ public class SimpleInterface {
     panel.setLayout(new GridLayout(7, 1));
 
     JButton button1 = new JButton("HELP");
-    JTextField textField1 = new JTextField(20);
     panel.add(button1);
 
     // Add ActionListener to HELP button
@@ -33,12 +33,10 @@ public class SimpleInterface {
       public void actionPerformed(ActionEvent e) {
         JOptionPane.showMessageDialog(frame, "This is the help message!");
       }
-
     });
 
 
     JButton button2 = new JButton("New task");
-    JTextField textField2 = new JTextField(10);
     panel.add(button2);
 
     button2.addActionListener(new ActionListener() {
@@ -54,20 +52,16 @@ public class SimpleInterface {
           try {
             int taskHours = Integer.parseInt(hours.getText());
             int taskMinutes = Integer.parseInt(minutes.getText());
-            int taskId = 0;
+            int taskId = todoList.getNextTaskId();
             RegularTask newTask = new RegularTask(++taskId, taskHours, taskMinutes,
                     title.getText());
+            todoList.newTask(newTask);
             ToDoList currentToDoList = null;
             currentToDoList.newTask(newTask);
-            DynamicNode NewTask = null;
-            System.out.println("New task created: " + NewTask.toString());
+            JOptionPane.showMessageDialog(frame, "New task created: " + newTask.toString());
           } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input. Please enter numeric values for hours and minutes.");
           }
-         /* System.out.println("Title: " + title.getText());
-          System.out.println("Hours: " + hours.getText());
-          System.out.println("Minutes: " + minutes.getText());
-        }*/
         }
       }
     });
