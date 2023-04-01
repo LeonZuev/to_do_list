@@ -13,14 +13,6 @@ import java.util.*;
 
 public class ToDoList {
 
-  public int getNextTaskId() {
-    return 0;
-  }
-
-  public Iterable<? extends RegularTask> getCurrentTasks() {
-    return null;
-  }
-
   enum Correction {
     CHANGE_TITLE, //коррекция название
     CHANGE_HOURS, // коррекция часов
@@ -88,7 +80,7 @@ public class ToDoList {
   }
 
   //Корректировка задачи
-  public void correctTask(int taskId) throws IOException {
+  public void correctTask() throws IOException {
     BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
 
     int id = getIdFromUser(read);
