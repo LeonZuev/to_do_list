@@ -1,7 +1,6 @@
-
 package interfaces;
 
-import org.junit.jupiter.api.DynamicNode;
+import toDoList.Main;
 import toDoList.RegularTask;
 import toDoList.ToDoList;
 
@@ -13,6 +12,7 @@ import java.io.IOException;
 
 public class SimpleInterface {
   private static final ToDoList todoList = new ToDoList();
+
   public static void main(String[] args) {
     SwingUtilities.invokeLater(SimpleInterface::run);
   }
@@ -53,13 +53,13 @@ public class SimpleInterface {
           try {
             int taskHours = Integer.parseInt(hours.getText());
             int taskMinutes = Integer.parseInt(minutes.getText());
-            int taskId = todoList.getNextTaskId();
-            RegularTask newTask = new RegularTask(++taskId, taskHours, taskMinutes,
+            ToDoList currentTodoList = new ToDoList();
+            Object ToDoList = null;
+            int taskId = currentTodoList.getNextTaskId();
+            RegularTask newTask = new RegularTask(taskId, taskHours, taskMinutes,
                     title.getText());
-            todoList.newTask(newTask);
-            ToDoList currentToDoList = null;
+            ToDoList currentToDoList = new ToDoList();
             currentToDoList.newTask(newTask);
-            JOptionPane.showMessageDialog(frame, "New task created: " + newTask.toString());
           } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Invalid input. Please enter numeric values for hours and minutes.");
           }
@@ -83,7 +83,7 @@ public class SimpleInterface {
       }
     });
 
-    JButton button4 = new JButton("Check task");
+    JButton button4 = new JButton("Correct task");
     panel.add(button4);
 
     button4.addActionListener(new ActionListener() {
@@ -138,8 +138,6 @@ public class SimpleInterface {
         }
       }
     });
-
-
 
     JButton button7 = new JButton("EXIT");
     panel.add(button7);

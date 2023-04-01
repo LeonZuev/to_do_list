@@ -13,6 +13,8 @@ import java.util.*;
 
 public class ToDoList {
 
+  private int currentTaskId;
+
   public RegularTask[] getCurrentTasks() {
     return new RegularTask[0];
   }
@@ -50,6 +52,7 @@ public class ToDoList {
   //Новая задача
   public void newTask(RegularTask task) {
     current.put(task.getTaskId(), task);
+    currentTaskId = task.getTaskId() + 1;
     checkList();
   }
 
@@ -247,3 +250,4 @@ public class ToDoList {
     return currentTime;
   }
 }
+
