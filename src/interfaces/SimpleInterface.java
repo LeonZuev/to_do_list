@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class SimpleInterface {
   private static final ToDoList todoList = new ToDoList();
@@ -106,21 +107,52 @@ public class SimpleInterface {
       }
     });
 
-
     JButton button5 = new JButton("Sort task");
-    JTextField textField5 = new JTextField(10);
     panel.add(button5);
 
+    button5.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        try {
+          ToDoList currentToDoList;
+          currentToDoList = null;
+          currentToDoList.sortTasks();
+        } catch (IOException ioException) {
+          ioException.printStackTrace();
+        }
+      }
+    });
 
     JButton button6 = new JButton("Export task");
-    JTextField textField6 = new JTextField(10);
     panel.add(button6);
+
+    button6.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        try {
+          ToDoList currentToDoList = null;
+          currentToDoList.exportTaskList();
+          JOptionPane.showMessageDialog(frame, "Task list exported successfully!");
+        } catch (IOException ex) {
+          JOptionPane.showMessageDialog(frame, "Error exporting task list: " + ex.getMessage());
+        }
+      }
+    });
+
 
 
     JButton button7 = new JButton("EXIT");
-    JTextField textField7 = new JTextField(10);
     panel.add(button7);
 
+    button7.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        int option = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?", "Exit Confirmation", JOptionPane.YES_NO_OPTION);
+        if (option == JOptionPane.YES_OPTION) {
+          System.exit(0);
+        }
+      }
+    });
 
     frame.add(panel);
     frame.setVisible(true);
