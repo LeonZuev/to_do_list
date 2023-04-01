@@ -31,6 +31,13 @@ public class ToDoList {
     return false;
   }
 
+  public void correctTask(int taskId, String correction, String newValue) {
+  }
+
+  public Object[] getValidCorrections() {
+    return new Object[0];
+  }
+
   enum Correction {
     CHANGE_TITLE, //коррекция название
     CHANGE_HOURS, // коррекция часов

@@ -11,11 +11,8 @@ import java.io.IOException;
 
 public class MainInterface {
   private static final ToDoList todoList = new ToDoList();
-  private static final ListInterface listInterface;
+  private static final ListInterface listInterface = new ListInterface(todoList);
 
-  static {
-    listInterface = new ListInterface();
-  }
 
   public static void main(String[] args) {
     SwingUtilities.invokeLater(MainInterface::run);
@@ -113,9 +110,9 @@ public class MainInterface {
     panel.add(button4);
 
     button4.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        JTextField taskIdField = new JTextField();
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+/*        JTextField taskIdField = new JTextField();
         Object[] fields = {"Task ID: ", taskIdField};
         int option = JOptionPane.showConfirmDialog(frame, fields, "Correct Task", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
@@ -131,16 +128,22 @@ public class MainInterface {
           }
         }
       }
-    });
-
-    JButton button5 = new JButton("Sort task");
+    });*/
+                                  try {
+                                    listInterface.correctTask();
+                                  } catch (IOException ioException) {
+                                    ioException.printStackTrace();
+                                  }
+                                }
+                              });
+            JButton button5 = new JButton("Sort task");
     panel.add(button5);
 
     button5.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
-         ToDoList.sortTasks();
+          ToDoList.sortTasks();
         } catch (IOException ioException) {
           ioException.printStackTrace();
         }

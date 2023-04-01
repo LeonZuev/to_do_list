@@ -12,18 +12,9 @@ import java.util.Map;
 
 public class ListInterface {
   private ToDoList toDoList;
-  public ListInterface() {
+
+  public ListInterface(ToDoList toDoList) {
     this.toDoList = toDoList;
-  }
-
-
-  public static void main(String[] args) {
-    SwingUtilities.invokeLater(ListInterface::run);
-  }
-  private static void run() {
-    ListInterface listInterface = new ListInterface();
-    // You can now call the methods of the `listInterface` object, for example:
-    listInterface.showHelp(null);
   }
 
 
@@ -88,5 +79,24 @@ public class ListInterface {
   }
 
   public void showHelp(JFrame frame) {
+  }
+
+  public void correctTask() throws IOException {
+    try {
+      int taskId = getIdFromUser();
+
+      String correction = (String) JOptionPane.showInputDialog(null, "What do you want to change?",
+              "Correct Task", JOptionPane.PLAIN_MESSAGE, null, toDoList.getValidCorrections(), "TITLE");
+      if (correction != null && toDoList.isValidCorrection(correction)) {
+        String newValue = showInputDialog("Enter the new value: ");
+        toDoList.correctTask(taskId, correction, newValue);
+      }
+      else {
+        showMessageDialog("Incorrect command: " + correction);
+      }
+    } catch (IllegalArgumentException e) {
+      showMessageDialog(e.getMessage());
+    }
+
   }
 }
