@@ -1,6 +1,5 @@
 package interfaces;
 
-import toDoList.Main;
 import toDoList.RegularTask;
 import toDoList.ToDoList;
 
@@ -10,11 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class SimpleInterface {
+public class MainInterface {
   private static final ToDoList todoList = new ToDoList();
 
   public static void main(String[] args) {
-    SwingUtilities.invokeLater(SimpleInterface::run);
+    SwingUtilities.invokeLater(MainInterface::run);
   }
 
   private static void run() {
