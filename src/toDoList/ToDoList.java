@@ -58,7 +58,7 @@ public class ToDoList {
 
   private static final Map<Integer, RegularTask> current = new HashMap<>();
 
-  private static List<Map.Entry<Integer, RegularTask>> listToDo() {
+  public static List<Map.Entry<Integer, RegularTask>> listToDo() {
     List<Map.Entry<Integer, RegularTask>> listToDo = new ArrayList<>();
     listToDo.addAll(current.entrySet());
     return listToDo;

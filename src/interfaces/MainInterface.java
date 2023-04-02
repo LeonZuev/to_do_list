@@ -94,11 +94,7 @@ public class MainInterface {
     button5.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        try {
-          ToDoList.sortTasks();
-        } catch (IOException ioException) {
-          ioException.printStackTrace();
-        }
+        listInterface.sortTasks();
       }
     });
 
@@ -109,8 +105,7 @@ public class MainInterface {
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
-          ToDoList currentToDoList = null;
-          currentToDoList.exportTaskList();
+          todoList.exportTaskList(); // Replace currentToDoList with todoList
           JOptionPane.showMessageDialog(frame, "Task list exported successfully!");
         } catch (IOException ex) {
           JOptionPane.showMessageDialog(frame, "Error exporting task list: " +

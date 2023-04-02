@@ -5,6 +5,7 @@ import toDoList.ToDoList;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +18,6 @@ public class ListInterface {
     this.parentComponent = mainFrame; // Set parentComponent to mainFrame
     WindowSetting windowSetting = new WindowSetting(); // Create an instance of WindowSetting
     WindowSetting.setWindowOnTargetMonitor(mainFrame); // Call setWindowOnTargetMonitor method
-  }
-
-
-
-  public ListInterface(ToDoList todoList) {
   }
 
   public void showMessageDialog(String message) {
@@ -123,5 +119,42 @@ public class ListInterface {
       showMessageDialog(e.getMessage());
     }
 
+  }
+
+  public void sortTasks() {
+    String[] options = {"ID", "TIME", "FINISH"};
+    String sortType = (String) JOptionPane.showInputDialog(
+            parentComponent,
+            "Select sorting type:",
+            "Sort tasks",
+            JOptionPane.PLAIN_MESSAGE,
+            null,
+            options,
+            options[0]);
+
+    if (sortType == null) {
+      return;
+    }
+    List<Map.Entry<Integer, RegularTask>> listOfTaskWithTime = toDoList.listToDo();
+    while (!sortType.equals("FINISH")) {
+      switch (sortType) {
+        case "ID":
+          toDoList.checkList();
+          break;
+      }
+      sortType = (String) JOptionPane.showInputDialog(
+              parentComponent,
+              "Select sorting type:",
+              "Sort Tasks",
+              JOptionPane.PLAIN_MESSAGE,
+              null,
+              options,
+              options[0]);
+
+      if (sortType == null) {
+        return;
+      }
+    }
+    showTasksListDialog(listOfTaskWithTime);
   }
 }
